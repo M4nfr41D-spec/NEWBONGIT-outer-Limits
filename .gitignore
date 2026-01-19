@@ -1,0 +1,50 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary Files
+*.tmp
+*.temp
+~*
+
+# Build/Distribution
+dist/
+build/
+*.min.js
+*.min.css
+
+# Dependencies (if added later)
+node_modules/
+package-lock.json
+yarn.lock
+
+# User-specific Files
+saves/
+screenshots/
+recordings/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+.env
+.env.local
+*.bak
+*.old

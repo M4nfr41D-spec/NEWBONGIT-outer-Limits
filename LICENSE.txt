@@ -1,0 +1,50 @@
+PROPRIETARY SOFTWARE LICENSE
+
+Copyright (c) 2026 Manfred Foissner. All rights reserved.
+
+M4NFROID GALACTICA ("Software")
+
+TERMS AND CONDITIONS
+
+1. GRANT OF LICENSE
+   This Software is proprietary and confidential. No rights are granted
+   except as expressly stated herein.
+
+2. RESTRICTIONS
+   You may NOT:
+   - Modify, adapt, translate, or create derivative works
+   - Reverse engineer, decompile, or disassemble the Software
+   - Distribute, sell, lease, rent, lend, or sublicense
+   - Use for commercial purposes without written permission
+   - Remove or alter any copyright notices or labels
+
+3. PERSONAL USE
+   You MAY:
+   - Play the game for personal, non-commercial entertainment
+   - Create backup copies for personal use only
+   - Share feedback and bug reports with the developer
+
+4. DISCLAIMER OF WARRANTY
+   THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+   NONINFRINGEMENT.
+
+5. LIMITATION OF LIABILITY
+   IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM,
+   DAMAGES, OR OTHER LIABILITY ARISING FROM, OUT OF, OR IN CONNECTION
+   WITH THE SOFTWARE OR THE USE OF THE SOFTWARE.
+
+6. TERMINATION
+   This license is effective until terminated. Your rights under this
+   license will terminate automatically without notice if you fail to
+   comply with any term.
+
+7. GOVERNING LAW
+   This license shall be governed by the laws of Austria.
+
+For licensing inquiries or commercial use, contact:
+Manfred Foissner
+Vienna, Austria
+
+Last Updated: January 19, 2026
