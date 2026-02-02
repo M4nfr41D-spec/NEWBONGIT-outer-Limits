@@ -1,0 +1,274 @@
+{
+  "scrapper": {
+    "id": "scrapper",
+    "name": "The Scrapper",
+    "title": "Salvage Specialist",
+    "description": "Breaks down unwanted gear into useful components.",
+    "location": "hub",
+    "services": {
+      "salvage": {
+        "name": "Salvage Item",
+        "description": "Convert items to Shards based on rarity",
+        "rates": {
+          "common": { "min": 1, "max": 2 },
+          "uncommon": { "min": 3, "max": 5 },
+          "rare": { "min": 8, "max": 12 },
+          "epic": { "min": 20, "max": 30 },
+          "legendary": { "min": 50, "max": 75 },
+          "mythic": { "min": 100, "max": 150 }
+        }
+      },
+      "bulkSalvage": {
+        "name": "Bulk Salvage",
+        "description": "Salvage all items below selected rarity"
+      },
+      "sell": {
+        "name": "Quick Sell",
+        "description": "Sell item for Scrap (faster but less value)"
+      }
+    }
+  },
+  "quartermaster": {
+    "id": "quartermaster",
+    "name": "Commander Reyes",
+    "title": "Quartermaster",
+    "description": "Supplies equipment for pilots. Stock refreshes each run.",
+    "location": "hub",
+    "services": {
+      "buy": {
+        "name": "Purchase Equipment",
+        "description": "Buy items from rotating stock",
+        "stock": {
+          "common": { "count": 3, "priceRange": [50, 100] },
+          "uncommon": { "count": 2, "priceRange": [200, 400] },
+          "rare": { "count": 1, "priceRange": [1000, 2000] }
+        },
+        "refreshTrigger": "runStart"
+      },
+      "gamble": {
+        "name": "Mystery Crate",
+        "description": "Random item, rarity weighted by luck",
+        "cost": { "resource": "scrap", "amount": 500 },
+        "rarityWeights": {
+          "common": 40,
+          "uncommon": 35,
+          "rare": 18,
+          "epic": 5,
+          "legendary": 1.8,
+          "mythic": 0.2
+        }
+      },
+      "sell": {
+        "name": "Sell to Vendor",
+        "description": "Sell items for Scrap"
+      }
+    }
+  },
+  "engineer": {
+    "id": "engineer",
+    "name": "Dr. Vex",
+    "title": "Chief Engineer",
+    "description": "Permanent ship upgrades using Cells.",
+    "location": "hub",
+    "currency": "cells",
+    "upgradeTrees": {
+      "offense": {
+        "name": "Offense Upgrades",
+        "upgrades": {
+          "baseDamage": {
+            "name": "Weapon Calibration",
+            "description": "+2% base damage",
+            "maxRanks": 20,
+            "costBase": 100,
+            "costScale": 1.1,
+            "effect": { "stat": "damage", "type": "percent", "value": 0.02 }
+          },
+          "critChance": {
+            "name": "Precision Targeting",
+            "description": "+1% critical chance",
+            "maxRanks": 10,
+            "costBase": 150,
+            "costScale": 1.15,
+            "effect": { "stat": "critChance", "type": "flat", "value": 0.01 }
+          },
+          "critDamage": {
+            "name": "Critical Amplifier",
+            "description": "+5% critical damage",
+            "maxRanks": 10,
+            "costBase": 200,
+            "costScale": 1.15,
+            "effect": { "stat": "critDamage", "type": "percent", "value": 0.05 }
+          },
+          "attackSpeed": {
+            "name": "Fire Control",
+            "description": "+2% attack speed",
+            "maxRanks": 10,
+            "costBase": 175,
+            "costScale": 1.12,
+            "effect": { "stat": "attackSpeed", "type": "percent", "value": 0.02 }
+          }
+        }
+      },
+      "defense": {
+        "name": "Defense Upgrades",
+        "upgrades": {
+          "maxHP": {
+            "name": "Hull Reinforcement",
+            "description": "+3% max HP",
+            "maxRanks": 20,
+            "costBase": 100,
+            "costScale": 1.1,
+            "effect": { "stat": "maxHP", "type": "percent", "value": 0.03 }
+          },
+          "maxShield": {
+            "name": "Shield Capacitor",
+            "description": "+3% max shield",
+            "maxRanks": 20,
+            "costBase": 100,
+            "costScale": 1.1,
+            "effect": { "stat": "maxShield", "type": "percent", "value": 0.03 }
+          },
+          "shieldRegen": {
+            "name": "Shield Accelerator",
+            "description": "+5% shield regeneration",
+            "maxRanks": 10,
+            "costBase": 150,
+            "costScale": 1.15,
+            "effect": { "stat": "shieldRegen", "type": "percent", "value": 0.05 }
+          },
+          "armor": {
+            "name": "Armor Plating",
+            "description": "+1 armor",
+            "maxRanks": 15,
+            "costBase": 200,
+            "costScale": 1.2,
+            "effect": { "stat": "armor", "type": "flat", "value": 1 }
+          }
+        }
+      },
+      "utility": {
+        "name": "Utility Upgrades",
+        "upgrades": {
+          "moveSpeed": {
+            "name": "Thruster Boost",
+            "description": "+2% movement speed",
+            "maxRanks": 10,
+            "costBase": 125,
+            "costScale": 1.1,
+            "effect": { "stat": "moveSpeed", "type": "percent", "value": 0.02 }
+          },
+          "pickupRadius": {
+            "name": "Tractor Beam",
+            "description": "+10% pickup radius",
+            "maxRanks": 10,
+            "costBase": 100,
+            "costScale": 1.08,
+            "effect": { "stat": "pickupRadius", "type": "percent", "value": 0.10 }
+          },
+          "xpGain": {
+            "name": "Neural Interface",
+            "description": "+5% experience gain",
+            "maxRanks": 10,
+            "costBase": 200,
+            "costScale": 1.15,
+            "effect": { "stat": "xpBonus", "type": "percent", "value": 0.05 }
+          },
+          "scrapFind": {
+            "name": "Salvage Scanner",
+            "description": "+5% scrap drops",
+            "maxRanks": 10,
+            "costBase": 150,
+            "costScale": 1.12,
+            "effect": { "stat": "scrapBonus", "type": "percent", "value": 0.05 }
+          }
+        }
+      },
+      "special": {
+        "name": "Special Upgrades",
+        "upgrades": {
+          "stashSlots": {
+            "name": "Cargo Expansion",
+            "description": "+5 stash slots",
+            "maxRanks": 5,
+            "costs": [500, 1000, 2000, 4000, 8000],
+            "effect": { "stat": "stashSlots", "type": "flat", "value": 5 }
+          },
+          "loadout2": {
+            "name": "Equipment Loadout 2",
+            "description": "Unlock second equipment loadout",
+            "maxRanks": 1,
+            "costs": [1000],
+            "effect": { "stat": "loadouts", "type": "special", "value": 1 }
+          },
+          "loadout3": {
+            "name": "Equipment Loadout 3",
+            "description": "Unlock third equipment loadout",
+            "maxRanks": 1,
+            "costs": [2500],
+            "requires": { "loadout2": 1 },
+            "effect": { "stat": "loadouts", "type": "special", "value": 1 }
+          },
+          "droneSlot": {
+            "name": "Drone Bay",
+            "description": "Unlock drone equipment slot",
+            "maxRanks": 1,
+            "costs": [2000],
+            "effect": { "stat": "droneSlot", "type": "special", "value": 1 }
+          }
+        }
+      }
+    }
+  },
+  "artificer": {
+    "id": "artificer",
+    "name": "Master Kira",
+    "title": "Artificer",
+    "description": "Modify and enhance your equipment through crafting.",
+    "location": "hub",
+    "unlockLevel": 25,
+    "services": {
+      "reforge": {
+        "name": "Reforge",
+        "description": "Reroll all affixes on an item",
+        "cost": { "shards": 50, "scrap": 500 },
+        "preservesRarity": true
+      },
+      "augment": {
+        "name": "Augment",
+        "description": "Add one random affix (up to rarity cap)",
+        "cost": { "shards": 100, "scrap": 1000 },
+        "maxAffixes": {
+          "common": 0,
+          "uncommon": 1,
+          "rare": 2,
+          "epic": 3,
+          "legendary": 4,
+          "mythic": 5
+        }
+      },
+      "transmute": {
+        "name": "Transmute",
+        "description": "Upgrade item rarity",
+        "costs": {
+          "toUncommon": { "shards": 30, "scrap": 300 },
+          "toRare": { "shards": 75, "scrap": 750 },
+          "toEpic": { "shards": 200, "scrap": 2000 },
+          "toLegendary": { "shards": 500, "scrap": 5000, "cores": 1 }
+        },
+        "maxRarity": "legendary"
+      },
+      "enchant": {
+        "name": "Enchant",
+        "description": "Add specific affix (requires matching Rune)",
+        "cost": { "shards": 150, "scrap": 1500 },
+        "requiresRune": true
+      },
+      "socket": {
+        "name": "Add Socket",
+        "description": "Add gem socket to item",
+        "cost": { "shards": 250, "scrap": 2500 },
+        "maxSockets": 2
+      }
+    }
+  }
+}

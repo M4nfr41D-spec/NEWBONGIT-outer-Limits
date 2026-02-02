@@ -1,0 +1,283 @@
+{
+  "categories": {
+    "progression": {
+      "name": "Progression",
+      "description": "Milestones on your journey",
+      "color": "#00d4ff"
+    },
+    "combat": {
+      "name": "Combat",
+      "description": "Feats of battle",
+      "color": "#ff4444"
+    },
+    "loot": {
+      "name": "Loot",
+      "description": "Treasures discovered",
+      "color": "#ff8800"
+    },
+    "economy": {
+      "name": "Economy",
+      "description": "Trading and resources",
+      "color": "#ffcc00"
+    },
+    "mastery": {
+      "name": "Mastery",
+      "description": "Expert challenges",
+      "color": "#aa44ff"
+    }
+  },
+  "achievements": {
+    "reach_level_10": {
+      "id": "reach_level_10",
+      "name": "Rookie Pilot",
+      "description": "Reach level 10",
+      "category": "progression",
+      "condition": { "type": "level", "value": 10 },
+      "rewards": { "statPoints": 3 },
+      "hidden": false
+    },
+    "reach_level_25": {
+      "id": "reach_level_25",
+      "name": "Veteran",
+      "description": "Reach level 25",
+      "category": "progression",
+      "condition": { "type": "level", "value": 25 },
+      "rewards": { "statPoints": 5, "skillPoints": 1 },
+      "hidden": false
+    },
+    "reach_level_50": {
+      "id": "reach_level_50",
+      "name": "Elite Pilot",
+      "description": "Reach level 50",
+      "category": "progression",
+      "condition": { "type": "level", "value": 50 },
+      "rewards": { "statPoints": 10, "skillPoints": 2 },
+      "hidden": false
+    },
+    "reach_level_75": {
+      "id": "reach_level_75",
+      "name": "Ace",
+      "description": "Reach level 75",
+      "category": "progression",
+      "condition": { "type": "level", "value": 75 },
+      "rewards": { "statPoints": 15, "skillPoints": 3 },
+      "hidden": false
+    },
+    "reach_level_100": {
+      "id": "reach_level_100",
+      "name": "Legend",
+      "description": "Reach level 100",
+      "category": "progression",
+      "condition": { "type": "level", "value": 100 },
+      "rewards": { "statPoints": 25, "skillPoints": 5, "scrap": 10000 },
+      "hidden": false
+    },
+    "complete_act1": {
+      "id": "complete_act1",
+      "name": "Outer Rim Cleared",
+      "description": "Complete Act 1",
+      "category": "progression",
+      "condition": { "type": "actComplete", "value": "act1" },
+      "rewards": { "scrap": 1000 },
+      "hidden": false
+    },
+    "complete_act2": {
+      "id": "complete_act2",
+      "name": "City Ruins Conquered",
+      "description": "Complete Act 2",
+      "category": "progression",
+      "condition": { "type": "actComplete", "value": "act2" },
+      "rewards": { "scrap": 5000, "skillPoints": 1 },
+      "hidden": false
+    },
+    "complete_act3": {
+      "id": "complete_act3",
+      "name": "Toxicity Purged",
+      "description": "Complete Act 3",
+      "category": "progression",
+      "condition": { "type": "actComplete", "value": "act3" },
+      "rewards": { "scrap": 25000, "skillPoints": 3 },
+      "hidden": false
+    },
+    "reach_zone_50": {
+      "id": "reach_zone_50",
+      "name": "Deep Explorer",
+      "description": "Reach zone 50 in the Endless Void",
+      "category": "progression",
+      "condition": { "type": "zone", "value": 50 },
+      "rewards": { "statPoints": 20 },
+      "hidden": false
+    },
+    "reach_zone_100": {
+      "id": "reach_zone_100",
+      "name": "Void Walker",
+      "description": "Reach zone 100 in the Endless Void",
+      "category": "progression",
+      "condition": { "type": "zone", "value": 100 },
+      "rewards": { "statPoints": 50, "skillPoints": 5 },
+      "hidden": false
+    },
+    "kill_100": {
+      "id": "kill_100",
+      "name": "First Blood",
+      "description": "Kill 100 enemies",
+      "category": "combat",
+      "condition": { "type": "totalKills", "value": 100 },
+      "rewards": { "scrap": 100 },
+      "hidden": false
+    },
+    "kill_1000": {
+      "id": "kill_1000",
+      "name": "Slayer",
+      "description": "Kill 1,000 enemies",
+      "category": "combat",
+      "condition": { "type": "totalKills", "value": 1000 },
+      "rewards": { "scrap": 1000 },
+      "hidden": false
+    },
+    "kill_10000": {
+      "id": "kill_10000",
+      "name": "Executioner",
+      "description": "Kill 10,000 enemies",
+      "category": "combat",
+      "condition": { "type": "totalKills", "value": 10000 },
+      "rewards": { "scrap": 10000, "statPoints": 10 },
+      "hidden": false
+    },
+    "kill_streak_25": {
+      "id": "kill_streak_25",
+      "name": "Combo Master",
+      "description": "Achieve a 25 kill streak",
+      "category": "combat",
+      "condition": { "type": "killStreak", "value": 25 },
+      "rewards": { "scrap": 500 },
+      "hidden": false
+    },
+    "kill_streak_50": {
+      "id": "kill_streak_50",
+      "name": "Rampage",
+      "description": "Achieve a 50 kill streak",
+      "category": "combat",
+      "condition": { "type": "killStreak", "value": 50 },
+      "rewards": { "scrap": 2000 },
+      "hidden": false
+    },
+    "kill_streak_100": {
+      "id": "kill_streak_100",
+      "name": "Unstoppable",
+      "description": "Achieve a 100 kill streak",
+      "category": "combat",
+      "condition": { "type": "killStreak", "value": 100 },
+      "rewards": { "scrap": 5000, "skillPoints": 1 },
+      "hidden": false
+    },
+    "damage_1m": {
+      "id": "damage_1m",
+      "name": "Heavy Hitter",
+      "description": "Deal 1,000,000 total damage",
+      "category": "combat",
+      "condition": { "type": "totalDamage", "value": 1000000 },
+      "rewards": { "statPoints": 5 },
+      "hidden": false
+    },
+    "find_legendary": {
+      "id": "find_legendary",
+      "name": "Lucky Find",
+      "description": "Find your first Legendary item",
+      "category": "loot",
+      "condition": { "type": "findRarity", "value": "legendary" },
+      "rewards": { "scrap": 1000 },
+      "hidden": false
+    },
+    "find_mythic": {
+      "id": "find_mythic",
+      "name": "Mythic Discovery",
+      "description": "Find a Mythic item",
+      "category": "loot",
+      "condition": { "type": "findRarity", "value": "mythic" },
+      "rewards": { "scrap": 10000, "skillPoints": 2 },
+      "hidden": false
+    },
+    "find_10_legendaries": {
+      "id": "find_10_legendaries",
+      "name": "Treasure Hunter",
+      "description": "Find 10 Legendary items",
+      "category": "loot",
+      "condition": { "type": "findRarityCount", "rarity": "legendary", "value": 10 },
+      "rewards": { "statPoints": 10 },
+      "hidden": false
+    },
+    "salvage_100": {
+      "id": "salvage_100",
+      "name": "Recycler",
+      "description": "Salvage 100 items",
+      "category": "economy",
+      "condition": { "type": "salvageCount", "value": 100 },
+      "rewards": { "scrap": 500 },
+      "hidden": false
+    },
+    "earn_100k_scrap": {
+      "id": "earn_100k_scrap",
+      "name": "Wealthy",
+      "description": "Earn 100,000 total scrap",
+      "category": "economy",
+      "condition": { "type": "totalScrapEarned", "value": 100000 },
+      "rewards": { "scrap": 5000 },
+      "hidden": false
+    },
+    "spend_100k_scrap": {
+      "id": "spend_100k_scrap",
+      "name": "Big Spender",
+      "description": "Spend 100,000 scrap at vendors",
+      "category": "economy",
+      "condition": { "type": "totalScrapSpent", "value": 100000 },
+      "rewards": { "scrap": 10000 },
+      "hidden": false
+    },
+    "max_skill_tree": {
+      "id": "max_skill_tree",
+      "name": "Specialized",
+      "description": "Max out any skill tree",
+      "category": "mastery",
+      "condition": { "type": "maxSkillTree" },
+      "rewards": { "skillPoints": 5 },
+      "hidden": false
+    },
+    "deathless_act1": {
+      "id": "deathless_act1",
+      "name": "Flawless: Act 1",
+      "description": "Complete Act 1 without dying",
+      "category": "mastery",
+      "condition": { "type": "deathlessAct", "value": "act1" },
+      "rewards": { "scrap": 5000, "statPoints": 5 },
+      "hidden": false
+    },
+    "speedrun_act1": {
+      "id": "speedrun_act1",
+      "name": "Speed Demon: Act 1",
+      "description": "Complete Act 1 in under 10 minutes",
+      "category": "mastery",
+      "condition": { "type": "actTime", "act": "act1", "value": 600 },
+      "rewards": { "scrap": 3000 },
+      "hidden": false
+    },
+    "playtime_10h": {
+      "id": "playtime_10h",
+      "name": "Dedicated",
+      "description": "Play for 10 hours total",
+      "category": "progression",
+      "condition": { "type": "playtime", "value": 36000 },
+      "rewards": { "statPoints": 5 },
+      "hidden": false
+    },
+    "playtime_100h": {
+      "id": "playtime_100h",
+      "name": "Committed",
+      "description": "Play for 100 hours total",
+      "category": "progression",
+      "condition": { "type": "playtime", "value": 360000 },
+      "rewards": { "statPoints": 25, "skillPoints": 5 },
+      "hidden": false
+    }
+  }
+}
