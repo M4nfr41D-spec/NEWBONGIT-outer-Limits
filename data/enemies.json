@@ -1,0 +1,556 @@
+{
+  "types": {
+    "drone_basic": {
+      "id": "drone_basic",
+      "name": "Scout Drone",
+      "category": "drone",
+      "tier": 1,
+      "sprite": "enemy_drone_basic_64x64.png",
+      "baseStats": {
+        "hp": 20,
+        "damage": 5,
+        "speed": 120,
+        "fireRate": 1.5,
+        "xp": 10,
+        "scrap": 5
+      },
+      "ai": "chase",
+      "behavior": {
+        "aggroRange": 300,
+        "attackRange": 200,
+        "fleeThreshold": 0
+      },
+      "projectile": {
+        "speed": 300,
+        "size": 4,
+        "color": "#ff4444"
+      }
+    },
+    "drone_shield": {
+      "id": "drone_shield",
+      "name": "Shield Drone",
+      "category": "drone",
+      "tier": 1,
+      "sprite": "enemy_drone_shield_64x64.png",
+      "baseStats": {
+        "hp": 15,
+        "shield": 25,
+        "damage": 4,
+        "speed": 100,
+        "fireRate": 2.0,
+        "xp": 15,
+        "scrap": 8
+      },
+      "ai": "chase",
+      "behavior": {
+        "aggroRange": 250,
+        "attackRange": 180,
+        "fleeThreshold": 0
+      },
+      "projectile": {
+        "speed": 280,
+        "size": 4,
+        "color": "#4488ff"
+      }
+    },
+    "drone_elite": {
+      "id": "drone_elite",
+      "name": "Elite Drone",
+      "category": "drone",
+      "tier": 2,
+      "sprite": "enemy_drone_elite_64x64.png",
+      "isElite": true,
+      "baseStats": {
+        "hp": 80,
+        "shield": 30,
+        "damage": 12,
+        "speed": 140,
+        "fireRate": 1.0,
+        "xp": 50,
+        "scrap": 25
+      },
+      "ai": "aggressive",
+      "behavior": {
+        "aggroRange": 400,
+        "attackRange": 250,
+        "fleeThreshold": 0
+      },
+      "projectile": {
+        "speed": 350,
+        "size": 6,
+        "color": "#ffaa00"
+      },
+      "modifiers": ["multishot"]
+    },
+    "fighter_basic": {
+      "id": "fighter_basic",
+      "name": "Assault Fighter",
+      "category": "fighter",
+      "tier": 2,
+      "sprite": "enemy_fighter_basic_64x64.png",
+      "baseStats": {
+        "hp": 45,
+        "damage": 10,
+        "speed": 100,
+        "fireRate": 1.2,
+        "xp": 20,
+        "scrap": 12
+      },
+      "ai": "strafe",
+      "behavior": {
+        "aggroRange": 350,
+        "attackRange": 280,
+        "strafeSpeed": 80,
+        "fleeThreshold": 0.2
+      },
+      "projectile": {
+        "speed": 320,
+        "size": 5,
+        "color": "#ff6644"
+      }
+    },
+    "fighter_sniper": {
+      "id": "fighter_sniper",
+      "name": "Sniper Fighter",
+      "category": "fighter",
+      "tier": 2,
+      "sprite": "enemy_sniper.png",
+      "baseStats": {
+        "hp": 30,
+        "damage": 25,
+        "speed": 60,
+        "fireRate": 3.0,
+        "xp": 25,
+        "scrap": 15
+      },
+      "ai": "kite",
+      "behavior": {
+        "aggroRange": 500,
+        "attackRange": 450,
+        "preferredRange": 400,
+        "fleeThreshold": 0.3,
+        "windupTime": 0.8
+      },
+      "projectile": {
+        "speed": 600,
+        "size": 3,
+        "color": "#ff0000",
+        "piercing": true
+      }
+    },
+    "fighter_elite": {
+      "id": "fighter_elite",
+      "name": "Elite Fighter",
+      "category": "fighter",
+      "tier": 3,
+      "sprite": "enemy_fighter_elite_64x64.png",
+      "isElite": true,
+      "baseStats": {
+        "hp": 150,
+        "shield": 50,
+        "damage": 18,
+        "speed": 110,
+        "fireRate": 0.8,
+        "xp": 80,
+        "scrap": 45
+      },
+      "ai": "aggressive",
+      "behavior": {
+        "aggroRange": 400,
+        "attackRange": 300,
+        "fleeThreshold": 0
+      },
+      "projectile": {
+        "speed": 380,
+        "size": 7,
+        "color": "#ff8800"
+      },
+      "modifiers": ["armored", "haste"]
+    },
+    "bomber_basic": {
+      "id": "bomber_basic",
+      "name": "Plasma Bomber",
+      "category": "bomber",
+      "tier": 3,
+      "sprite": "enemy_bomber_basic_96x96.png",
+      "baseStats": {
+        "hp": 100,
+        "damage": 35,
+        "speed": 50,
+        "fireRate": 2.5,
+        "xp": 40,
+        "scrap": 30
+      },
+      "ai": "slow_approach",
+      "behavior": {
+        "aggroRange": 350,
+        "attackRange": 250,
+        "fleeThreshold": 0
+      },
+      "projectile": {
+        "speed": 200,
+        "size": 12,
+        "color": "#ff00ff",
+        "explosive": true,
+        "explosionRadius": 60
+      }
+    },
+    "bomber_elite": {
+      "id": "bomber_elite",
+      "name": "Elite Bomber",
+      "category": "bomber",
+      "tier": 4,
+      "sprite": "enemy_bomber_elite_96x96.png",
+      "isElite": true,
+      "baseStats": {
+        "hp": 300,
+        "shield": 80,
+        "damage": 50,
+        "speed": 40,
+        "fireRate": 2.0,
+        "xp": 120,
+        "scrap": 80
+      },
+      "ai": "slow_approach",
+      "behavior": {
+        "aggroRange": 400,
+        "attackRange": 300,
+        "fleeThreshold": 0
+      },
+      "projectile": {
+        "speed": 180,
+        "size": 16,
+        "color": "#ff44ff",
+        "explosive": true,
+        "explosionRadius": 100,
+        "clusterCount": 3
+      },
+      "modifiers": ["armored", "regenerating"]
+    },
+    "carrier_basic": {
+      "id": "carrier_basic",
+      "name": "Drone Carrier",
+      "category": "carrier",
+      "tier": 4,
+      "sprite": "enemy_carrier_128x128.png",
+      "baseStats": {
+        "hp": 200,
+        "shield": 50,
+        "damage": 15,
+        "speed": 30,
+        "fireRate": 0,
+        "xp": 80,
+        "scrap": 60
+      },
+      "ai": "support",
+      "behavior": {
+        "aggroRange": 500,
+        "attackRange": 0,
+        "spawnInterval": 5.0,
+        "maxSpawns": 4,
+        "spawnType": "drone_basic",
+        "fleeThreshold": 0.4
+      }
+    },
+    "carrier_elite": {
+      "id": "carrier_elite",
+      "name": "Elite Carrier",
+      "category": "carrier",
+      "tier": 5,
+      "sprite": "enemy_carrier_elite_128x128.png",
+      "isElite": true,
+      "baseStats": {
+        "hp": 500,
+        "shield": 150,
+        "damage": 20,
+        "speed": 25,
+        "fireRate": 3.0,
+        "xp": 200,
+        "scrap": 150
+      },
+      "ai": "support",
+      "behavior": {
+        "aggroRange": 600,
+        "attackRange": 400,
+        "spawnInterval": 4.0,
+        "maxSpawns": 6,
+        "spawnType": "drone_elite",
+        "fleeThreshold": 0.2
+      },
+      "projectile": {
+        "speed": 250,
+        "size": 8,
+        "color": "#ffcc00"
+      },
+      "modifiers": ["summoner", "shielded"]
+    }
+  },
+  "bosses": {
+    "boss_corrupted_core": {
+      "id": "boss_corrupted_core",
+      "name": "THE CORRUPTED CORE",
+      "category": "boss",
+      "tier": 5,
+      "sprite": "enemy_corrupted_spawn.png",
+      "isBoss": true,
+      "baseStats": {
+        "hp": 1000,
+        "shield": 200,
+        "damage": 20,
+        "speed": 40,
+        "fireRate": 1.0,
+        "xp": 500,
+        "scrap": 500
+      },
+      "phases": [
+        {
+          "hpThreshold": 1.0,
+          "pattern": "circle_spray",
+          "fireRate": 1.5,
+          "projectiles": 8
+        },
+        {
+          "hpThreshold": 0.66,
+          "pattern": "targeted_burst",
+          "fireRate": 0.8,
+          "projectiles": 3,
+          "spawnMinions": "drone_basic",
+          "minionCount": 3
+        },
+        {
+          "hpThreshold": 0.33,
+          "pattern": "laser_sweep",
+          "fireRate": 0.5,
+          "enraged": true,
+          "speedMultiplier": 1.5
+        }
+      ],
+      "rewards": {
+        "guaranteedRarity": "rare",
+        "cells": 50,
+        "cores": 1
+      }
+    },
+    "boss_warlord_vex": {
+      "id": "boss_warlord_vex",
+      "name": "WARLORD VEX",
+      "category": "boss",
+      "tier": 6,
+      "sprite": "enemy_boss_act2_256x256.png",
+      "isBoss": true,
+      "baseStats": {
+        "hp": 3000,
+        "shield": 500,
+        "armor": 10,
+        "damage": 35,
+        "speed": 60,
+        "fireRate": 0.8,
+        "xp": 2000,
+        "scrap": 2000
+      },
+      "phases": [
+        {
+          "hpThreshold": 1.0,
+          "pattern": "missile_barrage",
+          "fireRate": 1.0,
+          "projectiles": 5
+        },
+        {
+          "hpThreshold": 0.66,
+          "pattern": "charge_attack",
+          "chargeSpeed": 400,
+          "chargeDamage": 100,
+          "spawnMinions": "fighter_basic",
+          "minionCount": 4
+        },
+        {
+          "hpThreshold": 0.33,
+          "pattern": "berserk",
+          "fireRate": 0.4,
+          "enraged": true,
+          "damageMultiplier": 1.5
+        }
+      ],
+      "rewards": {
+        "guaranteedRarity": "epic",
+        "cells": 150,
+        "cores": 2
+      }
+    },
+    "boss_void_emperor": {
+      "id": "boss_void_emperor",
+      "name": "THE VOID EMPEROR",
+      "category": "boss",
+      "tier": 7,
+      "sprite": "enemy_boss_act3_256x256.png",
+      "isBoss": true,
+      "baseStats": {
+        "hp": 8000,
+        "shield": 1000,
+        "armor": 20,
+        "damage": 50,
+        "speed": 50,
+        "fireRate": 0.6,
+        "xp": 10000,
+        "scrap": 10000
+      },
+      "phases": [
+        {
+          "hpThreshold": 1.0,
+          "pattern": "void_orbs",
+          "fireRate": 1.2,
+          "projectiles": 12
+        },
+        {
+          "hpThreshold": 0.75,
+          "pattern": "summon_elite",
+          "spawnMinions": "bomber_elite",
+          "minionCount": 2,
+          "invulnerableDuring": true
+        },
+        {
+          "hpThreshold": 0.5,
+          "pattern": "black_hole",
+          "pullStrength": 100,
+          "duration": 5.0
+        },
+        {
+          "hpThreshold": 0.25,
+          "pattern": "final_form",
+          "enraged": true,
+          "speedMultiplier": 2.0,
+          "damageMultiplier": 2.0
+        }
+      ],
+      "rewards": {
+        "guaranteedRarity": "legendary",
+        "cells": 500,
+        "cores": 5
+      }
+    },
+    "boss_endless": {
+      "id": "boss_endless",
+      "name": "VOID CHAMPION",
+      "category": "boss",
+      "tier": 8,
+      "sprite": "enemy_boss_endless_256x256.png",
+      "isBoss": true,
+      "endless": true,
+      "baseStats": {
+        "hp": 2000,
+        "shield": 300,
+        "damage": 30,
+        "speed": 50,
+        "fireRate": 1.0,
+        "xp": 1000,
+        "scrap": 1000
+      },
+      "scaling": {
+        "hpPerZone": 0.15,
+        "damagePerZone": 0.08,
+        "shieldPerZone": 0.12
+      },
+      "phases": [
+        {
+          "hpThreshold": 1.0,
+          "pattern": "random",
+          "patterns": ["circle_spray", "targeted_burst", "missile_barrage"]
+        },
+        {
+          "hpThreshold": 0.5,
+          "pattern": "random",
+          "patterns": ["charge_attack", "summon_elite", "laser_sweep"],
+          "spawnMinions": "random",
+          "minionCount": 3
+        }
+      ],
+      "rewards": {
+        "guaranteedRarity": "epic",
+        "legendaryChance": 0.25,
+        "cells": 100,
+        "cores": 1
+      }
+    }
+  },
+  "modifiers": {
+    "armored": {
+      "id": "armored",
+      "name": "Armored",
+      "color": "#888888",
+      "effects": { "damageReduction": 0.5 },
+      "visual": "armor_glow"
+    },
+    "shielded": {
+      "id": "shielded",
+      "name": "Shielded",
+      "color": "#4488ff",
+      "effects": { "shieldMultiplier": 2.0, "shieldRegen": 10 },
+      "visual": "shield_bubble"
+    },
+    "haste": {
+      "id": "haste",
+      "name": "Haste",
+      "color": "#44ff44",
+      "effects": { "speedMultiplier": 1.3, "fireRateMultiplier": 0.7 },
+      "visual": "speed_trail"
+    },
+    "regenerating": {
+      "id": "regenerating",
+      "name": "Regenerating",
+      "color": "#ff44ff",
+      "effects": { "hpRegen": 0.02 },
+      "visual": "heal_particles"
+    },
+    "multishot": {
+      "id": "multishot",
+      "name": "Multishot",
+      "color": "#ffaa00",
+      "effects": { "projectileCount": 3, "spreadAngle": 0.3 },
+      "visual": "none"
+    },
+    "explosive": {
+      "id": "explosive",
+      "name": "Explosive",
+      "color": "#ff4400",
+      "effects": { "explosionOnDeath": true, "explosionDamage": 30, "explosionRadius": 80 },
+      "visual": "fire_aura"
+    },
+    "vampiric": {
+      "id": "vampiric",
+      "name": "Vampiric",
+      "color": "#880044",
+      "effects": { "lifeSteal": 0.25 },
+      "visual": "drain_effect"
+    },
+    "summoner": {
+      "id": "summoner",
+      "name": "Summoner",
+      "color": "#8844ff",
+      "effects": { "summonOnDamage": true, "summonChance": 0.1, "summonType": "drone_basic" },
+      "visual": "summon_circle"
+    },
+    "teleporter": {
+      "id": "teleporter",
+      "name": "Teleporter",
+      "color": "#00ffff",
+      "effects": { "teleportChance": 0.15, "teleportCooldown": 3.0 },
+      "visual": "phase_flicker"
+    },
+    "reflective": {
+      "id": "reflective",
+      "name": "Reflective",
+      "color": "#ffffff",
+      "effects": { "reflectChance": 0.25 },
+      "visual": "mirror_sheen"
+    }
+  },
+  "spawnConfig": {
+    "baseSpawnRate": 2.0,
+    "maxEnemiesPerZone": 30,
+    "eliteChance": 0.08,
+    "eliteChancePerZone": 0.005,
+    "maxEliteChance": 0.25,
+    "spawnRadius": 400,
+    "despawnRadius": 800
+  }
+}

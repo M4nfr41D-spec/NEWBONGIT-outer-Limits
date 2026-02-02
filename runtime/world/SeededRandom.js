@@ -82,7 +82,7 @@ export class SeededRandom {
    */
   nextBool(probability = 0.5) {
     return this.next() < probability;
-  },
+  }
 
   /**
    * Pick random element from array
@@ -92,7 +92,7 @@ export class SeededRandom {
   pick(array) {
     if (!array || array.length === 0) return undefined;
     return array[this.nextInt(0, array.length - 1)];
-  },
+  }
 
   /**
    * Shuffle array in place (Fisher-Yates)
@@ -105,7 +105,7 @@ export class SeededRandom {
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
-  },
+  }
 
   /**
    * Pick weighted random from options
@@ -124,7 +124,7 @@ export class SeededRandom {
 
     // Fallback to last option
     return entries[entries.length - 1][0];
-  },
+  }
 
   /**
    * Generate Gaussian/normal distributed random number
@@ -138,7 +138,7 @@ export class SeededRandom {
     const u2 = this.next();
     const z0 = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
     return z0 * stdDev + mean;
-  },
+  }
 
   /**
    * Generate random point in circle
@@ -154,7 +154,7 @@ export class SeededRandom {
       x: centerX + r * Math.cos(angle),
       y: centerY + r * Math.sin(angle)
     };
-  },
+  }
 
   /**
    * Generate random point in rectangle
@@ -169,14 +169,14 @@ export class SeededRandom {
       x: x + this.next() * width,
       y: y + this.next() * height
     };
-  },
+  }
 
   /**
    * Reset to initial seed
    */
   reset() {
     this.seed = this.initialSeed;
-  },
+  }
 
   /**
    * Clone with current state
@@ -186,7 +186,7 @@ export class SeededRandom {
     const rng = new SeededRandom(this.seed);
     rng.initialSeed = this.initialSeed;
     return rng;
-  },
+  }
 
   /**
    * Fork (create new RNG seeded from current)
