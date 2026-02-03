@@ -13,6 +13,12 @@ export const World = {
   // Current zone data
   zone: null,
 
+  // Alias for compatibility with main.js
+  get currentZone() { return this.zone; },
+
+  // Zone index
+  zoneIndex: 0,
+
   // Zone dimensions
   width: 2000,
   height: 2000,
@@ -637,11 +643,81 @@ export const World = {
   },
 
   // ============================================================
+  // PARALLAX BACKGROUND
+  // ============================================================
+
+  /**
+   * Draw parallax background
+   * @param {CanvasRenderingContext2D} ctx
+   * @param {number} screenW - Screen width
+   * @param {number} screenH - Screen height
+   */
+  drawParallax(ctx, screenW, screenH) {
+    // Simple space background
+    ctx.fillStyle = '#050810';
+    ctx.fillRect(0, 0, screenW, screenH);
+
+    // Stars (static for now, can be parallax later)
+    ctx.fillStyle = '#ffffff';
+    const starSeed = this.zone?.seed || 12345;
+    for (let i = 0; i < 100; i++) {
+      const x = ((starSeed * (i + 1) * 9301 + 49297) % 233280) / 233280 * screenW;
+      const y = ((starSeed * (i + 1) * 7621 + 34781) % 233280) / 233280 * screenH;
+      const size = ((starSeed * (i + 1) * 1234) % 3) + 1;
+      const alpha = 0.3 + ((starSeed * (i + 1) * 5678) % 100) / 100 * 0.7;
+      ctx.globalAlpha = alpha;
+      ctx.fillRect(x, y, size, size);
+    }
+    ctx.globalAlpha = 1;
+
+    // Nebula/fog effect
+    if (this.zone?.background) {
+      // Could load background image here
+    }
+  },
+
+  /**
+   * Alias for drawParallax
+   */
+  drawParallaxBackground(ctx, screenW, screenH) {
+    this.drawParallax(ctx, screenW, screenH);
+  },
+
+  /**
+   * Draw foreground parallax (optional)
+   */
+  drawParallaxForeground(ctx, screenW, screenH) {
+    // Fog overlay if enabled
+  },
+
+  // ============================================================
+  // ZONE LOADING
+  // ============================================================
+
+  /**
+   * Load a specific zone (for debug/teleport)
+   * @param {number} zoneIndex - Zone to load
+   */
+  loadZone(zoneIndex) {
+    if (!State.run.currentAct) return;
+
+    this.zoneIndex = zoneIndex;
+    this.generate(State.run.currentAct, zoneIndex);
+
+    // Reset player position
+    State.player.x = this.width / 2;
+    State.player.y = this.height / 2;
+
+    console.log(`[World] Loaded zone ${zoneIndex + 1}`);
+  },
+
+  // ============================================================
   // CLEANUP
   // ============================================================
 
   clear() {
     this.zone = null;
+    this.zoneIndex = 0;
     this.obstacles = [];
     this.decorations = [];
     this.portals = [];

@@ -383,6 +383,14 @@ export const SceneManager = {
   // GETTERS
   // ============================================================
 
+  /**
+   * Get current scene name
+   * @returns {string} Current scene
+   */
+  getScene() {
+    return this.current;
+  },
+
   isInCombat() {
     return this.current === 'combat';
   },
@@ -397,6 +405,58 @@ export const SceneManager = {
 
   isLoading() {
     return this.loading;
+  },
+
+  // ============================================================
+  // MAIN.JS COMPATIBILITY METHODS
+  // ============================================================
+
+  /**
+   * Go to hub scene
+   */
+  goToHub() {
+    this.current = 'hub';
+    this.transitioning = false;
+    console.log('[SceneManager] Switched to hub');
+  },
+
+  /**
+   * Start an act
+   * @param {string} actId - Act ID
+   * @param {object} seed - Seeded RNG
+   */
+  startAct(actId, seed) {
+    console.log(`[SceneManager] Starting act: ${actId}`);
+
+    // Store seed reference
+    this.currentSeed = seed;
+
+    // Transition to combat with loading
+    this.current = 'loading';
+
+    // Generate zone after brief delay
+    setTimeout(() => {
+      // Generate first zone
+      if (State.modules?.World) {
+        State.modules.World.generate(actId, 0);
+        State.modules.World.zoneIndex = 0;
+      }
+
+      // Switch to combat
+      this.current = 'combat';
+      console.log('[SceneManager] Combat scene ready');
+    }, 100);
+  },
+
+  /**
+   * Return to hub (with reason)
+   * @param {string} reason - Reason for return
+   */
+  returnToHub(reason = 'portal') {
+    console.log(`[SceneManager] Returning to hub: ${reason}`);
+    State.ui.showDeathModal = false;
+    State.ui.showVictoryModal = false;
+    this.current = 'hub';
   }
 };
 
