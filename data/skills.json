@@ -1,0 +1,362 @@
+{
+  "trees": {
+    "offense": {
+      "id": "offense",
+      "name": "Offense",
+      "description": "Maximize damage output and critical strikes",
+      "color": "#ff4444",
+      "skills": {
+        "precision_strike": {
+          "id": "precision_strike",
+          "name": "Precision Strike",
+          "description": "+5% critical chance per rank",
+          "tier": 1,
+          "maxRanks": 5,
+          "levelRequired": 5,
+          "pointsInTreeRequired": 0,
+          "effects": [
+            { "stat": "critChance", "type": "flat", "valuePerRank": 0.05 }
+          ]
+        },
+        "power_shot": {
+          "id": "power_shot",
+          "name": "Power Shot",
+          "description": "+10% damage per rank",
+          "tier": 1,
+          "maxRanks": 5,
+          "levelRequired": 5,
+          "pointsInTreeRequired": 0,
+          "effects": [
+            { "stat": "damage", "type": "percent", "valuePerRank": 0.10 }
+          ]
+        },
+        "rapid_fire": {
+          "id": "rapid_fire",
+          "name": "Rapid Fire",
+          "description": "+3% attack speed per rank",
+          "tier": 1,
+          "maxRanks": 5,
+          "levelRequired": 5,
+          "pointsInTreeRequired": 0,
+          "effects": [
+            { "stat": "attackSpeed", "type": "percent", "valuePerRank": 0.03 }
+          ]
+        },
+        "armor_pierce": {
+          "id": "armor_pierce",
+          "name": "Armor Pierce",
+          "description": "Ignore 5% enemy armor per rank",
+          "tier": 2,
+          "maxRanks": 5,
+          "levelRequired": 15,
+          "pointsInTreeRequired": 5,
+          "effects": [
+            { "stat": "armorPen", "type": "percent", "valuePerRank": 0.05 }
+          ]
+        },
+        "chain_lightning": {
+          "id": "chain_lightning",
+          "name": "Chain Lightning",
+          "description": "10% chance to chain damage to nearby enemy per rank",
+          "tier": 2,
+          "maxRanks": 3,
+          "levelRequired": 15,
+          "pointsInTreeRequired": 5,
+          "effects": [
+            { "stat": "chainChance", "type": "flat", "valuePerRank": 0.10 }
+          ]
+        },
+        "explosive_rounds": {
+          "id": "explosive_rounds",
+          "name": "Explosive Rounds",
+          "description": "5% chance for AoE damage on hit per rank",
+          "tier": 2,
+          "maxRanks": 3,
+          "levelRequired": 15,
+          "pointsInTreeRequired": 5,
+          "effects": [
+            { "stat": "explosiveChance", "type": "flat", "valuePerRank": 0.05 }
+          ]
+        },
+        "execution": {
+          "id": "execution",
+          "name": "Execution",
+          "description": "+50% damage to enemies below 20% HP",
+          "tier": 3,
+          "maxRanks": 1,
+          "levelRequired": 30,
+          "pointsInTreeRequired": 10,
+          "effects": [
+            { "stat": "executeDamage", "type": "flat", "valuePerRank": 0.50 }
+          ]
+        },
+        "overcharge": {
+          "id": "overcharge",
+          "name": "Overcharge",
+          "description": "Double damage but costs 5% HP per shot",
+          "tier": 3,
+          "maxRanks": 1,
+          "levelRequired": 30,
+          "pointsInTreeRequired": 10,
+          "effects": [
+            { "stat": "overcharge", "type": "special", "valuePerRank": 1 }
+          ]
+        },
+        "death_mark": {
+          "id": "death_mark",
+          "name": "Death Mark",
+          "description": "Killed enemies explode for 25% of their max HP",
+          "tier": 3,
+          "maxRanks": 1,
+          "levelRequired": 30,
+          "pointsInTreeRequired": 10,
+          "effects": [
+            { "stat": "deathExplosion", "type": "percent", "valuePerRank": 0.25 }
+          ]
+        }
+      }
+    },
+    "defense": {
+      "id": "defense",
+      "name": "Defense",
+      "description": "Survive longer and mitigate damage",
+      "color": "#4488ff",
+      "skills": {
+        "thick_hull": {
+          "id": "thick_hull",
+          "name": "Thick Hull",
+          "description": "+5% max HP per rank",
+          "tier": 1,
+          "maxRanks": 5,
+          "levelRequired": 5,
+          "pointsInTreeRequired": 0,
+          "effects": [
+            { "stat": "maxHP", "type": "percent", "valuePerRank": 0.05 }
+          ]
+        },
+        "energy_shield": {
+          "id": "energy_shield",
+          "name": "Energy Shield",
+          "description": "+5% max shield per rank",
+          "tier": 1,
+          "maxRanks": 5,
+          "levelRequired": 5,
+          "pointsInTreeRequired": 0,
+          "effects": [
+            { "stat": "maxShield", "type": "percent", "valuePerRank": 0.05 }
+          ]
+        },
+        "quick_repair": {
+          "id": "quick_repair",
+          "name": "Quick Repair",
+          "description": "+10% HP regeneration per rank",
+          "tier": 1,
+          "maxRanks": 5,
+          "levelRequired": 5,
+          "pointsInTreeRequired": 0,
+          "effects": [
+            { "stat": "hpRegen", "type": "percent", "valuePerRank": 0.10 }
+          ]
+        },
+        "damage_reduction": {
+          "id": "damage_reduction",
+          "name": "Damage Reduction",
+          "description": "+2% damage reduction per rank",
+          "tier": 2,
+          "maxRanks": 5,
+          "levelRequired": 15,
+          "pointsInTreeRequired": 5,
+          "effects": [
+            { "stat": "damageReduction", "type": "flat", "valuePerRank": 0.02 }
+          ]
+        },
+        "shield_surge": {
+          "id": "shield_surge",
+          "name": "Shield Surge",
+          "description": "Shield regens 50% faster when below 30% HP per rank",
+          "tier": 2,
+          "maxRanks": 3,
+          "levelRequired": 15,
+          "pointsInTreeRequired": 5,
+          "effects": [
+            { "stat": "lowHPShieldRegen", "type": "percent", "valuePerRank": 0.50 }
+          ]
+        },
+        "evasion": {
+          "id": "evasion",
+          "name": "Evasion",
+          "description": "+3% dodge chance per rank",
+          "tier": 2,
+          "maxRanks": 3,
+          "levelRequired": 15,
+          "pointsInTreeRequired": 5,
+          "effects": [
+            { "stat": "dodgeChance", "type": "flat", "valuePerRank": 0.03 }
+          ]
+        },
+        "last_stand": {
+          "id": "last_stand",
+          "name": "Last Stand",
+          "description": "Become immune for 3s when taking fatal damage (once per zone)",
+          "tier": 3,
+          "maxRanks": 1,
+          "levelRequired": 30,
+          "pointsInTreeRequired": 10,
+          "effects": [
+            { "stat": "lastStand", "type": "special", "valuePerRank": 1 }
+          ]
+        },
+        "reflect_shield": {
+          "id": "reflect_shield",
+          "name": "Reflect Shield",
+          "description": "Return 25% of damage taken while shielded",
+          "tier": 3,
+          "maxRanks": 1,
+          "levelRequired": 30,
+          "pointsInTreeRequired": 10,
+          "effects": [
+            { "stat": "damageReflect", "type": "flat", "valuePerRank": 0.25 }
+          ]
+        },
+        "regeneration": {
+          "id": "regeneration",
+          "name": "Regeneration",
+          "description": "+1% max HP regenerated per second in combat",
+          "tier": 3,
+          "maxRanks": 1,
+          "levelRequired": 30,
+          "pointsInTreeRequired": 10,
+          "effects": [
+            { "stat": "combatRegen", "type": "percent", "valuePerRank": 0.01 }
+          ]
+        }
+      }
+    },
+    "utility": {
+      "id": "utility",
+      "name": "Utility",
+      "description": "Quality of life and resource gains",
+      "color": "#44ff88",
+      "skills": {
+        "scavenger": {
+          "id": "scavenger",
+          "name": "Scavenger",
+          "description": "+5% scrap drops per rank",
+          "tier": 1,
+          "maxRanks": 5,
+          "levelRequired": 5,
+          "pointsInTreeRequired": 0,
+          "effects": [
+            { "stat": "scrapBonus", "type": "percent", "valuePerRank": 0.05 }
+          ]
+        },
+        "swift": {
+          "id": "swift",
+          "name": "Swift",
+          "description": "+3% movement speed per rank",
+          "tier": 1,
+          "maxRanks": 5,
+          "levelRequired": 5,
+          "pointsInTreeRequired": 0,
+          "effects": [
+            { "stat": "moveSpeed", "type": "percent", "valuePerRank": 0.03 }
+          ]
+        },
+        "magnetism": {
+          "id": "magnetism",
+          "name": "Magnetism",
+          "description": "+10% pickup radius per rank",
+          "tier": 1,
+          "maxRanks": 5,
+          "levelRequired": 5,
+          "pointsInTreeRequired": 0,
+          "effects": [
+            { "stat": "pickupRadius", "type": "percent", "valuePerRank": 0.10 }
+          ]
+        },
+        "lucky": {
+          "id": "lucky",
+          "name": "Lucky",
+          "description": "+2% rare+ drop chance per rank",
+          "tier": 2,
+          "maxRanks": 3,
+          "levelRequired": 15,
+          "pointsInTreeRequired": 5,
+          "effects": [
+            { "stat": "rarityBonus", "type": "flat", "valuePerRank": 0.02 }
+          ]
+        },
+        "efficient": {
+          "id": "efficient",
+          "name": "Efficient",
+          "description": "-5% vendor costs per rank",
+          "tier": 2,
+          "maxRanks": 3,
+          "levelRequired": 15,
+          "pointsInTreeRequired": 5,
+          "effects": [
+            { "stat": "vendorDiscount", "type": "percent", "valuePerRank": 0.05 }
+          ]
+        },
+        "experienced": {
+          "id": "experienced",
+          "name": "Experienced",
+          "description": "+5% XP gain per rank",
+          "tier": 2,
+          "maxRanks": 5,
+          "levelRequired": 15,
+          "pointsInTreeRequired": 5,
+          "effects": [
+            { "stat": "xpBonus", "type": "percent", "valuePerRank": 0.05 }
+          ]
+        },
+        "treasure_hunter": {
+          "id": "treasure_hunter",
+          "name": "Treasure Hunter",
+          "description": "Elite enemies always drop items",
+          "tier": 3,
+          "maxRanks": 1,
+          "levelRequired": 30,
+          "pointsInTreeRequired": 10,
+          "effects": [
+            { "stat": "eliteDropGuarantee", "type": "special", "valuePerRank": 1 }
+          ]
+        },
+        "merchant": {
+          "id": "merchant",
+          "name": "Merchant",
+          "description": "Sell items for +50% value",
+          "tier": 3,
+          "maxRanks": 1,
+          "levelRequired": 30,
+          "pointsInTreeRequired": 10,
+          "effects": [
+            { "stat": "sellBonus", "type": "percent", "valuePerRank": 0.50 }
+          ]
+        },
+        "explorer": {
+          "id": "explorer",
+          "name": "Explorer",
+          "description": "Reveal full minimap on zone entry",
+          "tier": 3,
+          "maxRanks": 1,
+          "levelRequired": 30,
+          "pointsInTreeRequired": 10,
+          "effects": [
+            { "stat": "minimapReveal", "type": "special", "valuePerRank": 1 }
+          ]
+        }
+      }
+    }
+  },
+  "pointsPerLevel": 0.5,
+  "pointsPerBoss": 1,
+  "resetCost": {
+    "first": 0,
+    "subsequent": { "resource": "cores", "amount": 1 }
+  },
+  "refundCost": {
+    "resource": "scrap",
+    "amountPerPoint": 500
+  }
+}

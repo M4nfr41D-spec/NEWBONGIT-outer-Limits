@@ -1001,7 +1001,7 @@ html, body {
 <div id="tooltip"></div>
 
 <!-- HUB MODAL (Space Station) -->
-<div class="modal-overlay" id="hubModal">
+<div class="modal-overlay active" id="hubModal">
   <div class="modal hub-modal">
     <div class="panel">
       <div class="panel-inner">
@@ -1031,8 +1031,8 @@ html, body {
   </div>
 </div>
 
-<!-- START MODAL (Legacy - hidden in exploration mode) -->
-<div class="modal-overlay active" id="startModal">
+<!-- START MODAL (Legacy - DISABLED for exploration mode) -->
+<div class="modal-overlay" id="startModal" style="display: none !important;">
   <div class="modal">
     <div class="panel">
       <div class="panel-inner">

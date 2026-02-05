@@ -1,0 +1,88 @@
+{
+  "act1": {
+    "id": "act1",
+    "name": "The Outer Rim",
+    "description": "Abandoned space stations and rogue drones patrol the void.",
+    "background": "tile_void.webp",
+    "baseLevel": 1,
+    "zoneCount": 10,
+    "bossZone": 10,
+    "unlocked": true,
+    "music": "combat",
+    "bossMusic": "boss",
+    "enemyTypes": ["drone_basic", "drone_shield", "fighter_basic"],
+    "eliteTypes": ["drone_elite", "fighter_elite"],
+    "bossType": "boss_corrupted_core",
+    "modifiers": [],
+    "rewards": {
+      "completionXP": 500,
+      "completionScrap": 1000,
+      "unlocksAct": "act2"
+    }
+  },
+  "act2": {
+    "id": "act2",
+    "name": "City Ruins",
+    "description": "The remnants of a once-great civilization, now infested with war machines.",
+    "background": "tile_city_ruins.webp",
+    "baseLevel": 100,
+    "zoneCount": 10,
+    "bossZone": 10,
+    "unlocked": false,
+    "music": "combat_intense",
+    "bossMusic": "boss",
+    "enemyTypes": ["fighter_basic", "fighter_sniper", "bomber_basic"],
+    "eliteTypes": ["fighter_elite", "bomber_elite"],
+    "bossType": "boss_warlord_vex",
+    "modifiers": ["armored"],
+    "rewards": {
+      "completionXP": 2000,
+      "completionScrap": 5000,
+      "unlocksAct": "act3"
+    }
+  },
+  "act3": {
+    "id": "act3",
+    "name": "Toxicity Zone",
+    "description": "A corrupted sector where reality itself seems to decay.",
+    "background": "tile_toxicity.webp",
+    "baseLevel": 250,
+    "zoneCount": 10,
+    "bossZone": 10,
+    "unlocked": false,
+    "music": "combat_intense",
+    "bossMusic": "boss",
+    "enemyTypes": ["bomber_basic", "carrier_basic", "fighter_sniper"],
+    "eliteTypes": ["bomber_elite", "carrier_elite"],
+    "bossType": "boss_void_emperor",
+    "modifiers": ["regenerating", "haste"],
+    "rewards": {
+      "completionXP": 10000,
+      "completionScrap": 25000,
+      "unlocksAct": "act4"
+    }
+  },
+  "act4": {
+    "id": "act4",
+    "name": "The Endless Void",
+    "description": "Beyond the known universe. Infinite scaling challenge.",
+    "background": "tile_void.webp",
+    "baseLevel": 0,
+    "baseLevelFormula": "playerLevel + 15",
+    "zoneCount": -1,
+    "bossZone": 10,
+    "unlocked": false,
+    "endless": true,
+    "music": "combat_intense",
+    "bossMusic": "boss",
+    "enemyTypes": ["all"],
+    "eliteTypes": ["all"],
+    "bossType": "boss_endless",
+    "modifiers": ["random"],
+    "rewards": {
+      "zoneXP": 100,
+      "zoneScrap": 200,
+      "bossCore": true
+    }
+  }
+}
