@@ -440,6 +440,21 @@ export const SceneManager = {
       if (State.modules?.World) {
         State.modules.World.generate(actId, 0);
         State.modules.World.zoneIndex = 0;
+
+        // Center player in zone
+        const zone = State.modules.World.currentZone;
+        if (zone) {
+          State.player.x = zone.width / 2;
+          State.player.y = zone.height / 2;
+          State.player.vx = 0;
+          State.player.vy = 0;
+        }
+
+        // Reset camera bounds for new zone
+        if (State.modules?.Camera) {
+          State.modules.Camera.maxX = Infinity;
+          State.modules.Camera.maxY = Infinity;
+        }
       }
 
       // Switch to combat

@@ -331,6 +331,11 @@ export const Enemies = {
   // ============================================================
 
   onEnemyDeath(enemy) {
+    // Notify World module
+    if (State.modules?.World) {
+      State.modules.World.onEnemyKilled(enemy);
+    }
+
     // Kill count
     State.run.stats.kills++;
     State.meta.totalKills++;
@@ -448,18 +453,36 @@ export const Enemies = {
 
   /**
    * Spawn enemy at position
-   * @param {object} data - Enemy data from zone spawn
+   * @param {string|object} typeOrData - Enemy type string or spawn data object
+   * @param {number} x - X position (if typeOrData is string)
+   * @param {number} y - Y position (if typeOrData is string)
+   * @param {number} level - Enemy level (if typeOrData is string)
+   * @param {boolean} isElite - Is elite (if typeOrData is string)
    * @returns {object} Spawned enemy
    */
-  spawn(data) {
+  spawn(typeOrData, x, y, level, isElite) {
+    // Support both: spawn(data) and spawn(type, x, y, level, isElite)
+    let data;
+    if (typeof typeOrData === 'object') {
+      data = typeOrData;
+    } else {
+      data = {
+        type: typeOrData,
+        x: x,
+        y: y,
+        level: level,
+        isElite: isElite || false
+      };
+    }
+
     const enemyDef = State.data.enemies?.[data.type];
     if (!enemyDef) {
       console.warn('[Enemies] Unknown enemy type:', data.type);
       return null;
     }
 
-    // Scale stats with zone
-    const zoneScale = 1 + (State.run.currentZone || 0) * 0.06;
+    // Scale stats with zone level
+    const zoneScale = 1 + ((data.level || State.run.currentZone || 0) * 0.06);
 
     const enemy = {
       id: `enemy_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
@@ -518,6 +541,65 @@ export const Enemies = {
 
     this.list.push(enemy);
     return enemy;
+  },
+
+  /**
+   * Spawn boss at position
+   * @param {string} bossType - Boss type ID
+   * @param {number} x - X position
+   * @param {number} y - Y position
+   * @param {number} level - Boss level
+   * @returns {object} Spawned boss
+   */
+  spawnBoss(bossType, x, y, level) {
+    // Try to get boss from bosses table first
+    const bossData = State.data.enemies?.bosses?.[bossType];
+
+    if (bossData) {
+      const boss = {
+        id: `boss_${Date.now()}`,
+        type: bossType,
+        ...bossData,
+        x: x,
+        y: y,
+        vx: 0,
+        vy: 0,
+        hp: bossData.hp || 2000,
+        maxHP: bossData.hp || 2000,
+        damage: bossData.damage || 50,
+        isBoss: true,
+        isElite: false,
+        behavior: 'aggressive',
+        speed: 60,
+        fireRate: 1.5,
+        shootCooldown: 0,
+        canShoot: true,
+        currentPhase: 0,
+        modifiers: {},
+        currentSpawns: 0,
+        teleportCooldown: 0
+      };
+
+      // Add shield if defined
+      if (bossData.shield) {
+        boss.shield = bossData.shield;
+        boss.maxShield = bossData.shield;
+        boss.shieldRegen = 5;
+      }
+
+      this.list.push(boss);
+      console.log(`[Enemies] Boss spawned: ${bossType}`);
+      return boss;
+    }
+
+    // Fallback to spawn as regular enemy with boss scaling
+    return this.spawn({
+      type: bossType,
+      x: x,
+      y: y,
+      level: level,
+      isBoss: true
+    });
   },
 
   applyEliteModifiers(enemy) {

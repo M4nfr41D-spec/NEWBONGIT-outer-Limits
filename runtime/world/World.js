@@ -96,6 +96,13 @@ export const World = {
     this.generateDecorations();
     this.generatePortal();
 
+    // Add minimap arrays to zone for main.js compatibility
+    this.zone.enemySpawns = [];
+    this.zone.eliteSpawns = [];
+    this.zone.bossSpawn = null;
+    this.zone.exit = this.portals.length > 0 ? { x: this.portals[0].x, y: this.portals[0].y } : null;
+    this.zone.portals = this.portals;
+
     // Reset spawn state
     this.spawnedEnemies = 0;
     this.maxEnemies = this.calculateMaxEnemies(zoneIndex, isBossZone);
@@ -292,10 +299,12 @@ export const World = {
   /**
    * Update world state
    * @param {number} dt - Delta time
-   * @param {object} Enemies - Enemies module reference
    */
-  update(dt, Enemies) {
+  update(dt) {
     if (!this.zone) return;
+
+    // Get Enemies module from State
+    const Enemies = State.modules?.Enemies;
 
     // Handle enemy spawning
     this.updateSpawning(dt, Enemies);
@@ -354,6 +363,9 @@ export const World = {
 
     Enemies.spawnBoss(this.zone.bossType, x, y, this.zone.baseLevel);
     this.zone.bossSpawned = true;
+
+    // Set bossSpawn for minimap display
+    this.zone.bossSpawn = { x, y, killed: false };
 
     // Play boss music and announcement
     if (State.modules?.Audio) {
@@ -731,6 +743,10 @@ export const World = {
 
     if (enemy.isBoss) {
       this.zone.bossKilled = true;
+      // Mark boss spawn as killed for minimap
+      if (this.zone.bossSpawn) {
+        this.zone.bossSpawn.killed = true;
+      }
     }
   }
 };

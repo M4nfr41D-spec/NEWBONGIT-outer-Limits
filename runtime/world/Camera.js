@@ -76,6 +76,12 @@ export const Camera = {
    * @param {number} screenHeight - Screen height
    */
   update(dt, screenWidth, screenHeight) {
+    // Auto-set bounds from current zone if not set
+    const zone = State.modules?.World?.currentZone;
+    if (zone && (this.maxX === Infinity || this.maxY === Infinity)) {
+      this.setBounds(zone.width, zone.height, screenWidth, screenHeight);
+    }
+
     // Update target to follow player
     this.followPlayer(screenWidth, screenHeight);
 
