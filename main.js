@@ -456,7 +456,7 @@ const Game = {
               <h3>${act.name}</h3>
               <p>${act.description || ''}</p>
               <div class="act-meta">
-                <span>${act.zones || 3} Zones</span>
+                <span>${act.endless ? '∞' : (act.zoneCount || 10)} Zones</span>
                 ${!unlocked ? '<span class="locked-text">LOCKED</span>' : ''}
               </div>
             </div>
