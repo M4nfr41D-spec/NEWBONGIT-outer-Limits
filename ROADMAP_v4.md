@@ -1,7 +1,8 @@
 # M4NFROID GALACTICA - ENDLESS PROGRESSION ROADMAP v4.0
 
-## Status: AWAITING APPROVAL
+## Status: IN PROGRESS - Phase 1-3 Complete, Phase 4-6 Partial
 **Created**: 2026-02-02
+**Updated**: 2026-02-07
 **Target**: Transform into AAA-tier Endless ARPG Looter
 **Philosophy**: Path of Exile depth + Diablo accessibility + Last Epoch respect-for-time
 
@@ -799,29 +800,29 @@ AT ZONE 100+:
 **Goal**: Get game running with all core systems
 
 ### 1.1 Create Runtime Modules
-- [ ] State.js - Global state management
-- [ ] DataLoader.js - JSON loading
-- [ ] Save.js - LocalStorage persistence
-- [ ] Input.js - Keyboard/mouse
-- [ ] AssetLoader.js - Image/audio preload
-- [ ] Audio.js - Sound system
+- [x] State.js - Global state management
+- [x] DataLoader.js - JSON loading
+- [x] Save.js - LocalStorage persistence
+- [x] Input.js - Keyboard/mouse
+- [x] AssetLoader.js - Image/audio preload
+- [x] Audio.js - Sound system
 
 ### 1.2 Create Data Files
-- [ ] acts.json - Act definitions
-- [ ] items.json - Base items + affixes
-- [ ] enemies.json - Enemy definitions
+- [x] acts.json - Act definitions
+- [x] items.json - Base items + affixes
+- [x] enemies.json - Enemy definitions
 
 ### 1.3 Core Game Systems
-- [ ] Player.js - Movement, shooting, collision
-- [ ] Enemies.js - Spawning, AI, damage
-- [ ] Bullets.js - Projectile management
-- [ ] Pickups.js - Loot collection
+- [x] Player.js - Movement, shooting, collision
+- [x] Enemies.js - Spawning, AI, damage
+- [x] Bullets.js - Projectile management
+- [x] Pickups.js - Loot collection
 
 ### 1.4 World Systems
-- [ ] Camera.js - Viewport following
-- [ ] World.js - Zone generation
-- [ ] SceneManager.js - Scene transitions
-- [ ] SeededRandom.js - Deterministic RNG
+- [x] Camera.js - Viewport following
+- [x] World.js - Zone generation
+- [x] SceneManager.js - Scene transitions
+- [x] SeededRandom.js - Deterministic RNG
 
 **CHECKPOINT**: Game runs, player can move and shoot enemies
 
@@ -831,21 +832,21 @@ AT ZONE 100+:
 **Goal**: Complete loot system with all mechanics
 
 ### 2.1 Item Generation
-- [ ] Items.js - Full item generation
-- [ ] Rarity system with weights
-- [ ] Affix rolling with tiers
-- [ ] Item level calculations
+- [x] Items.js - Full item generation
+- [x] Rarity system with weights
+- [x] Affix rolling with tiers
+- [x] Item level calculations
 
 ### 2.2 Equipment System
-- [ ] Equipment slots (7 slots)
-- [ ] Equip/unequip flow
-- [ ] Stash management
-- [ ] Stats from equipment applied
+- [x] Equipment slots (7 slots)
+- [x] Equip/unequip flow
+- [x] Stash management
+- [x] Stats from equipment applied
 
 ### 2.3 Drop System
-- [ ] Enemy drop tables
-- [ ] Pity protection (persisted)
-- [ ] Elite/boss guaranteed drops
+- [x] Enemy drop tables
+- [x] Pity protection (persisted)
+- [x] Elite/boss guaranteed drops
 - [ ] Visual drop effects
 
 **CHECKPOINT**: Loot drops, can equip items, stats affect combat
@@ -856,19 +857,19 @@ AT ZONE 100+:
 **Goal**: Complete currency sinks and vendors
 
 ### 3.1 Currency System
-- [ ] Scrap tracking
-- [ ] Cells tracking
-- [ ] Shards from salvage
-- [ ] Cores from bosses
+- [x] Scrap tracking
+- [x] Cells tracking
+- [x] Shards from salvage
+- [x] Cores from bosses
 
 ### 3.2 Vendor NPCs
-- [ ] Scrapper (salvage)
-- [ ] Quartermaster (buy/sell)
-- [ ] Engineer (upgrades)
+- [x] Scrapper (salvage) - defined in vendors.json
+- [x] Quartermaster (buy/sell) - defined in vendors.json
+- [x] Engineer (upgrades) - defined in vendors.json
 - [ ] UI for all vendors
 
 ### 3.3 Economy Balance
-- [ ] Drop rates tuning
+- [x] Drop rates tuning
 - [ ] Cost scaling
 - [ ] Sink/faucet ratio testing
 
@@ -880,21 +881,21 @@ AT ZONE 100+:
 **Goal**: Skill tree and stat allocation
 
 ### 4.1 Stat System
-- [ ] Stats.js enhancement
-- [ ] Stat point allocation UI
+- [x] Stats.js enhancement
+- [x] Stat point allocation UI
 - [ ] Diminishing returns
-- [ ] Stat effects in combat
+- [x] Stat effects in combat
 
 ### 4.2 Skill System
-- [ ] skills.json data
+- [x] skills.json data
 - [ ] Skill tree UI
 - [ ] Skill point spending
 - [ ] Skill effects implementation
 
 ### 4.3 Leveling Polish
-- [ ] Leveling.js enhancement
-- [ ] XP curve balancing
-- [ ] Level-up rewards
+- [x] Leveling.js enhancement
+- [x] XP curve balancing
+- [x] Level-up rewards
 
 **CHECKPOINT**: Can allocate stats and skills, feel power growth
 
@@ -904,19 +905,19 @@ AT ZONE 100+:
 **Goal**: Enemy variety and combat depth
 
 ### 5.1 Enemy Types
-- [ ] 5 enemy categories implemented
-- [ ] Unique behaviors per type
+- [x] 5 enemy categories implemented
+- [x] Unique behaviors per type (6 AI types)
 - [ ] Sprite variations
 
 ### 5.2 Elite System
-- [ ] 15 elite modifiers
-- [ ] Visual indicators
-- [ ] Modifier combinations
+- [x] 15 elite modifiers
+- [x] Visual indicators
+- [x] Modifier combinations
 
 ### 5.3 Boss System
-- [ ] 3 act bosses
+- [x] 3 act bosses (defined in enemies.json)
 - [ ] Phase mechanics
-- [ ] Endless boss scaling
+- [x] Endless boss scaling
 
 **CHECKPOINT**: Combat feels varied and challenging
 
@@ -926,12 +927,12 @@ AT ZONE 100+:
 **Goal**: True endless mode and final polish
 
 ### 6.1 Endless Mode
-- [ ] Zone scaling beyond Act 3
-- [ ] Zone modifiers
-- [ ] Endless boss generation
+- [x] Zone scaling beyond Act 3
+- [x] Zone modifiers (defined in acts.json)
+- [x] Endless boss generation
 
 ### 6.2 Achievements
-- [ ] achievements.json
+- [x] achievements.json
 - [ ] Achievement tracking
 - [ ] Reward distribution
 
@@ -942,7 +943,7 @@ AT ZONE 100+:
 - [ ] Sound effect placeholders
 
 ### 6.4 Crafting (Basic)
-- [ ] Artificer vendor
+- [x] Artificer vendor (defined in vendors.json)
 - [ ] Reforge system
 - [ ] Transmute system
 
