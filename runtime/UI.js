@@ -38,25 +38,27 @@ export const UI = {
     this.elements.xpText = document.getElementById('xp-text');
 
     // Combat HUD
-    this.elements.hpBar = document.getElementById('hp-bar');
-    this.elements.hpText = document.getElementById('hp-text');
-    this.elements.shieldBar = document.getElementById('shield-bar');
-    this.elements.shieldText = document.getElementById('shield-text');
+    this.elements.hpBar = document.getElementById('hpBar');
+    this.elements.hpText = document.getElementById('hpText');
+    this.elements.shieldBar = document.getElementById('shieldBar');
+    this.elements.shieldText = document.getElementById('shieldText');
 
     // Left panel
-    this.elements.equipmentPanel = document.getElementById('equipment-panel');
-    this.elements.stashGrid = document.getElementById('stash-grid');
+    this.elements.equipmentGrid = document.getElementById('equipmentGrid');
+    this.elements.stashGrid = document.getElementById('stashGrid');
 
     // Right panel
-    this.elements.shipStats = document.getElementById('ship-stats');
-    this.elements.pilotStats = document.getElementById('pilot-stats');
-    this.elements.statPointsBadge = document.getElementById('stat-points-badge');
+    this.elements.shipStats = document.getElementById('shipStats');
+    this.elements.pilotStats = document.getElementById('pilotStats');
+    this.elements.statPointsBadge = document.getElementById('statPointsNum');
+    this.elements.skillPointsBadge = document.getElementById('skillPointsNum');
+    this.elements.skillTrees = document.getElementById('skillTrees');
 
     // Modals
-    this.elements.hubModal = document.getElementById('hub-modal');
-    this.elements.deathModal = document.getElementById('death-modal');
-    this.elements.startModal = document.getElementById('start-modal');
-    this.elements.vendorModal = document.getElementById('vendor-modal');
+    this.elements.hubModal = document.getElementById('hubModal');
+    this.elements.deathModal = document.getElementById('deathModal');
+    this.elements.startModal = document.getElementById('startModal');
+    this.elements.vendorModal = document.getElementById('vendorModal');
 
     // Tooltip
     this.elements.tooltip = document.getElementById('tooltip');
@@ -124,6 +126,7 @@ export const UI = {
     this.renderStash();
     this.renderStats();
     this.renderPilotStats();
+    this.renderSkillTrees();
   },
 
   renderTopBar() {
@@ -208,36 +211,57 @@ export const UI = {
   // ============================================================
 
   renderEquipment() {
-    if (!this.elements.equipmentPanel) return;
+    if (!this.elements.equipmentGrid) return;
 
-    const slots = ['weapon', 'secondary', 'shield', 'engine', 'reactor', 'module', 'drone'];
+    const slots = [
+      { id: 'weapon', icon: '🔫', label: 'Weapon' },
+      { id: 'secondary', icon: '🔧', label: 'Secondary' },
+      { id: 'shield', icon: '🛡️', label: 'Shield' },
+      { id: 'engine', icon: '🚀', label: 'Engine' },
+      { id: 'reactor', icon: '⚡', label: 'Reactor' },
+      { id: 'module', icon: '📦', label: 'Module' },
+      { id: 'drone', icon: '🤖', label: 'Drone' }
+    ];
+
+    this.elements.equipmentGrid.innerHTML = '';
 
     slots.forEach(slot => {
-      const slotEl = this.elements.equipmentPanel.querySelector(`[data-slot="${slot}"]`);
-      if (!slotEl) return;
-
-      const item = getEquipped(slot);
-      const itemDisplay = slotEl.querySelector('.item-display') || slotEl;
+      const item = getEquipped(slot.id);
+      const slotEl = document.createElement('div');
+      slotEl.className = 'equip-slot' + (item ? ' filled' : '');
+      slotEl.dataset.slot = slot.id;
 
       if (item) {
-        itemDisplay.innerHTML = `
-          <div class="equipped-item" style="border-color: ${this.getRarityColor(item.rarity)}">
-            <span class="item-icon">⬡</span>
-            <span class="item-name">${item.name}</span>
+        slotEl.style.setProperty('--rarity-color', this.getRarityColor(item.rarity));
+        slotEl.innerHTML = `
+          <div class="slot-icon">${slot.icon}</div>
+          <div class="slot-info">
+            <div class="slot-type">${slot.label}</div>
+            <div class="slot-item" style="color: ${this.getRarityColor(item.rarity)}">${item.name}</div>
           </div>
         `;
-        itemDisplay.classList.add('has-item');
 
-        // Click to show tooltip
-        itemDisplay.onclick = (e) => {
+        // Click to show tooltip, double-click to unequip
+        slotEl.addEventListener('click', (e) => {
           e.stopPropagation();
           this.showTooltip(item, e.clientX, e.clientY, true);
-        };
+        });
+
+        slotEl.addEventListener('dblclick', (e) => {
+          e.stopPropagation();
+          this.onUnequipItem(item);
+        });
       } else {
-        itemDisplay.innerHTML = `<span class="empty-slot">${slot.toUpperCase()}</span>`;
-        itemDisplay.classList.remove('has-item');
-        itemDisplay.onclick = null;
+        slotEl.innerHTML = `
+          <div class="slot-icon">${slot.icon}</div>
+          <div class="slot-info">
+            <div class="slot-type">${slot.label}</div>
+            <div class="slot-empty">Empty</div>
+          </div>
+        `;
       }
+
+      this.elements.equipmentGrid.appendChild(slotEl);
     });
   },
 
@@ -255,14 +279,12 @@ export const UI = {
       if (isEquipped(item.id)) continue;
 
       const itemEl = document.createElement('div');
-      itemEl.className = 'stash-item';
+      itemEl.className = 'stash-slot filled';
+      itemEl.style.setProperty('--rarity-color', this.getRarityColor(item.rarity));
       itemEl.style.borderColor = this.getRarityColor(item.rarity);
       itemEl.dataset.itemId = item.id;
 
-      itemEl.innerHTML = `
-        <span class="item-icon">⬡</span>
-        <span class="item-rarity-dot" style="background: ${this.getRarityColor(item.rarity)}"></span>
-      `;
+      itemEl.innerHTML = `<span style="font-size: 18px;">⬡</span>`;
 
       // Click handlers
       itemEl.addEventListener('click', (e) => {
@@ -298,7 +320,7 @@ export const UI = {
     ];
 
     this.elements.shipStats.innerHTML = stats.map(s => `
-      <div class="stat-row">
+      <div class="stat-item">
         <span class="stat-label">${s.label}</span>
         <span class="stat-value" style="color: ${s.color}">${s.value}</span>
       </div>
@@ -309,23 +331,172 @@ export const UI = {
     if (!this.elements.pilotStats) return;
 
     const pilotStats = State.meta.pilotStats;
-    const statNames = ['strength', 'dexterity', 'intelligence', 'vitality', 'energy'];
+    const statDefs = [
+      { id: 'strength', icon: '💪', label: 'STR', desc: '+0.5% damage' },
+      { id: 'dexterity', icon: '🎯', label: 'DEX', desc: '+0.3% attack speed' },
+      { id: 'intelligence', icon: '🧠', label: 'INT', desc: '+1% cooldown reduction' },
+      { id: 'vitality', icon: '❤️', label: 'VIT', desc: '+3 max HP' },
+      { id: 'energy', icon: '⚡', label: 'ENR', desc: '+2 max shield' }
+    ];
 
-    for (const stat of statNames) {
-      const row = this.elements.pilotStats.querySelector(`[data-stat="${stat}"]`);
-      if (row) {
-        const valueEl = row.querySelector('.stat-value');
-        if (valueEl) {
-          valueEl.textContent = pilotStats[stat] || 0;
-        }
-      }
-    }
+    const hasPoints = State.meta.statPoints > 0;
+
+    this.elements.pilotStats.innerHTML = '';
+
+    statDefs.forEach(stat => {
+      const value = pilotStats[stat.id] || 0;
+      const row = document.createElement('div');
+      row.className = 'pilot-stat-row';
+      row.dataset.stat = stat.id;
+
+      row.innerHTML = `
+        <span class="pstat-icon">${stat.icon}</span>
+        <span class="pstat-name">${stat.label}</span>
+        <span class="pstat-value">${value}</span>
+        <button class="pstat-btn minus" ${value <= 0 ? 'disabled' : ''}>-</button>
+        <button class="pstat-btn plus" ${!hasPoints ? 'disabled' : ''}>+</button>
+      `;
+
+      // Wire up buttons
+      const plusBtn = row.querySelector('.plus');
+      const minusBtn = row.querySelector('.minus');
+
+      plusBtn.addEventListener('click', () => this.onAllocateStat(stat.id));
+      minusBtn.addEventListener('click', () => this.onDeallocateStat(stat.id));
+
+      this.elements.pilotStats.appendChild(row);
+    });
 
     // Update stat points badge
     if (this.elements.statPointsBadge) {
-      this.elements.statPointsBadge.textContent = State.meta.statPoints;
-      this.elements.statPointsBadge.style.display = State.meta.statPoints > 0 ? 'block' : 'none';
+      this.elements.statPointsBadge.textContent = State.meta.statPoints || 0;
     }
+  },
+
+  // ============================================================
+  // SKILL TREES RENDERING
+  // ============================================================
+
+  renderSkillTrees() {
+    if (!this.elements.skillTrees) return;
+
+    const skillData = State.data.skills;
+    if (!skillData) {
+      this.elements.skillTrees.innerHTML = '<div style="color: var(--text-dim); font-size: 11px;">Loading skills...</div>';
+      return;
+    }
+
+    const trees = [
+      { id: 'offense', name: 'Offense', icon: '⚔️', color: '#ff4444' },
+      { id: 'defense', name: 'Defense', icon: '🛡️', color: '#44ff44' },
+      { id: 'utility', name: 'Utility', icon: '⚡', color: '#4488ff' }
+    ];
+
+    const playerSkills = State.meta.skills || {};
+    const hasPoints = (State.meta.skillPoints || 0) > 0;
+
+    this.elements.skillTrees.innerHTML = '';
+
+    // Update skill points badge
+    if (this.elements.skillPointsBadge) {
+      this.elements.skillPointsBadge.textContent = State.meta.skillPoints || 0;
+    }
+
+    trees.forEach(tree => {
+      const treeSkills = skillData[tree.id] || [];
+      const pointsInTree = treeSkills.reduce((sum, s) => sum + (playerSkills[s.id] || 0), 0);
+
+      const section = document.createElement('div');
+      section.className = 'skill-tree-section';
+      section.style.setProperty('--tree-color', tree.color);
+
+      section.innerHTML = `
+        <div class="skill-tree-header">
+          <span class="tree-icon">${tree.icon}</span>
+          <span class="tree-name">${tree.name}</span>
+          <span class="tree-pts">${pointsInTree} pts</span>
+        </div>
+        <div class="skill-tree-body"></div>
+      `;
+
+      const header = section.querySelector('.skill-tree-header');
+      const body = section.querySelector('.skill-tree-body');
+
+      // Toggle expand/collapse
+      header.addEventListener('click', () => {
+        section.classList.toggle('open');
+      });
+
+      // Render skills in this tree
+      treeSkills.forEach(skill => {
+        const currentRank = playerSkills[skill.id] || 0;
+        const maxRank = skill.maxRank || 1;
+        const isLearned = currentRank > 0;
+        const meetsReqs = this.checkSkillRequirements(skill, playerSkills, State.meta.level);
+        const canLearn = hasPoints && meetsReqs && currentRank < maxRank;
+
+        const node = document.createElement('div');
+        node.className = 'skill-node' + (isLearned ? ' learned' : '') + (canLearn ? ' available' : '');
+        node.dataset.skillId = skill.id;
+
+        node.innerHTML = `
+          <span class="skill-icon">${skill.icon || '◆'}</span>
+          <div class="skill-info">
+            <div class="skill-name">${skill.name}</div>
+            <div class="skill-desc">${skill.description || ''}</div>
+          </div>
+          <span class="skill-rank">${currentRank}/${maxRank}</span>
+        `;
+
+        // Click to allocate point
+        node.addEventListener('click', () => {
+          if (canLearn) {
+            this.onAllocateSkill(skill.id);
+          }
+        });
+
+        body.appendChild(node);
+      });
+
+      this.elements.skillTrees.appendChild(section);
+    });
+  },
+
+  checkSkillRequirements(skill, playerSkills, playerLevel) {
+    // Check level requirement
+    if (skill.levelReq && playerLevel < skill.levelReq) return false;
+
+    // Check prerequisite skills
+    if (skill.requires) {
+      for (const reqId of skill.requires) {
+        if (!playerSkills[reqId] || playerSkills[reqId] <= 0) return false;
+      }
+    }
+
+    return true;
+  },
+
+  onAllocateSkill(skillId) {
+    if (!State.meta.skillPoints || State.meta.skillPoints <= 0) return;
+
+    if (!State.meta.skills) State.meta.skills = {};
+    if (!State.meta.skills[skillId]) State.meta.skills[skillId] = 0;
+
+    State.meta.skills[skillId]++;
+    State.meta.skillPoints--;
+
+    // Recalculate stats if Stats module available
+    if (State.modules?.Stats) {
+      State.modules.Stats.calculate();
+    }
+
+    // Save and re-render
+    if (State.modules?.Save) {
+      State.modules.Save.save();
+    }
+
+    this.renderSkillTrees();
+    this.renderStats();
   },
 
   // ============================================================
