@@ -381,7 +381,7 @@ export const UI = {
     if (!this.elements.skillTrees) return;
 
     const skillData = State.data.skills;
-    if (!skillData) {
+    if (!skillData || !skillData.trees) {
       this.elements.skillTrees.innerHTML = '<div style="color: var(--text-dim); font-size: 11px;">Loading skills...</div>';
       return;
     }
@@ -403,7 +403,9 @@ export const UI = {
     }
 
     trees.forEach(tree => {
-      const treeSkills = skillData[tree.id] || [];
+      // Access nested structure: skills.trees.offense.skills
+      const treeData = skillData.trees[tree.id];
+      const treeSkills = treeData?.skills ? Object.values(treeData.skills) : [];
       const pointsInTree = treeSkills.reduce((sum, s) => sum + (playerSkills[s.id] || 0), 0);
 
       const section = document.createElement('div');
@@ -430,7 +432,7 @@ export const UI = {
       // Render skills in this tree
       treeSkills.forEach(skill => {
         const currentRank = playerSkills[skill.id] || 0;
-        const maxRank = skill.maxRank || 1;
+        const maxRank = skill.maxRanks || skill.maxRank || 1;
         const isLearned = currentRank > 0;
         const meetsReqs = this.checkSkillRequirements(skill, playerSkills, State.meta.level);
         const canLearn = hasPoints && meetsReqs && currentRank < maxRank;
@@ -463,8 +465,15 @@ export const UI = {
   },
 
   checkSkillRequirements(skill, playerSkills, playerLevel) {
-    // Check level requirement
-    if (skill.levelReq && playerLevel < skill.levelReq) return false;
+    // Check level requirement (support both property names)
+    const levelReq = skill.levelRequired || skill.levelReq || 0;
+    if (levelReq && playerLevel < levelReq) return false;
+
+    // Check points-in-tree requirement
+    if (skill.pointsInTreeRequired && skill.pointsInTreeRequired > 0) {
+      // This would require knowing which tree the skill is in
+      // For now, skip this check
+    }
 
     // Check prerequisite skills
     if (skill.requires) {
